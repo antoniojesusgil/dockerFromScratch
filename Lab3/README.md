@@ -10,5 +10,5 @@
 7. muestra el directorio actual del contenedor `pwd`
 8. Cambia al directorio `root` y muestra un listado detallado del mismo
 9. Crea un archivo llamado `file` y guardalo. Sal de la sesión del contendor. ¿Qué ha ocurrido con el fichero `file`?
-10. Ejecuta el script `very-useful.py` en un contenedor python3.6-slim
+10. Ejecuta el script `very-useful.py` en un contenedor python:3.6-slim
 11. Experimenta modificando el código fuente desde tu ordenador de webA y webB
