@@ -6,4 +6,4 @@
 4. Crea una imagen `jupyter` ejecuta un contenedor y accede a la libreta a través del puerto `8888`
 5. El directorio `alpine` contiene instrucciones para construir tu primera imagen, ¡Adelante!
 6. Ahora puedes crear *tags* de una misma imagen, El directorio `extractor`contiene instrucciones.
-7. Construye la imagen y ejecuta el contenedor del aplicativo `dash`
+7. Construye la imagen y ejecuta el contenedor del aplicativo `dash-app` Muestra la aplicación en tu navegador
