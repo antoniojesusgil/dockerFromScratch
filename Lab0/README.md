@@ -87,7 +87,6 @@ Docker nos facilita la posibildad de tener una shell interactiva sobre la cual s
 ```docker
 docker container run -it alpine /bin/sh
 ```
-You are now inside the container running a Linux shell and you can try out a few commands like ls -l, uname -a and others. Note that Alpine is a small Linux OS so several commands might be missing. Exit out of the shell and container by typing the exit command.
+Prueba a ejecutar los siguientes comandos dentro de la shell `ls -l`, `uname -a`. Para salir del contenedor escribir el comando `exit`.
 
-Ok, we said that we had run each of our commands above in a separate container instance. We can see these instances using the docker container ls command. The docker container ls command by itself shows you all containers that are currently running:
-
+Lista los contenedores en ejecución.
