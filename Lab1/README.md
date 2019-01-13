@@ -1,14 +1,22 @@
 ## Contenedores & Imágenes
 
-### Isolation
-Veamos un ejemplo práctico
-1. Ejecuta una shell interactiva de alpine `docker container run -it alpine /bin/ash`
-2. En la shell interactiva escribe:
+### 1. Isolation
+
+Concepto de seguridad crítico en el mundo Docker! A pesar de que cada comando de ejecución del contenedor usaba la misma imagen `alpine`, cada ejecución era un contenedor separado y aislado. Cada contenedor tiene un sistema de archivos separado y se ejecuta en un espacio de nombres diferente; por defecto, un contenedor no tiene forma de interactuar con otros contenedores, incluso los de la misma imagen. 
+
+Veamos un ejemplo práctico para aprender más sobre aislamiento.
+Ejecuta 
+```
+docker container run -it alpine /bin/ash
+```
+
+En la shell interactiva escribe:
 ```sh
 echo "Hello docker from scratch" > /home/hello.txt
 
 ls /home
 ```
+
 3. Sal del contenedor con `exit`
 4. Para ver como funciona el aislamiento, ejecuta `docker container run alpine ls /home`
 5. Comprobamos que el fichero `hello.txt` no existe, esto es debido a que esta ejecución se ha realizado en una nueva instancia y por tanto separada.
