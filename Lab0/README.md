@@ -46,7 +46,7 @@ docker image pull alpine
 ```
 El comando `pull` recupera la imagen Alpine del registro oficial de Docker y la guarda en nuestro sistema.
 
-You can use the `docker image` command to see a list of all images on your system.
+Ahora disponemos de imagenes en nuestro docker local. Podemos usar el comando `docker image` para ver un listado completo de las imágenes en nuestro sistema.
 
 ```
 docker image ls
@@ -56,7 +56,17 @@ REPOSITORY              TAG                 IMAGE ID            CREATED         
 alpine                 latest              c51f86c28340        4 weeks ago         1.109 MB
 hello-world             latest              690ed74de00f        5 months ago        960 B
 ```
-4. Ahora disponemos de imagenes en nuestro docker local. Lista las imágenes con `docker image ls` ¿Qué diferencias has observado entre la ejecución de los comandos anteriores?
-5. Vamos a correr un contenedor basado en la imagen alpine, ejecuta `docker container run alpine ls -l` 
-6. Ejecuta `docker container run alpine echo "curso docker from scratch"`
-7. Prueba a ejecutar otros comandos, por ejemplo `/bin/sh` `cat /etc/alpine-release`
+
+### 4. Docker Container Run
+Vamos a ejecutar un **contenedor** Docker basado en la imagen alpine usando el comando `docker container run`
+
+```
+docker container run alpine ls -l
+```
+ 
+Ejecuta 
+```
+docker container run alpine echo "curso docker from scratch"
+```
+
+Prueba a ejecutar otros comandos, por ejemplo `/bin/sh` y `cat /etc/alpine-release`
