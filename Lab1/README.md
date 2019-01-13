@@ -1,6 +1,6 @@
 ## Contenedores & Imágenes
 
-### 1. Isolation
+### Isolation
 
 Concepto de seguridad crítico en el mundo Docker! A pesar de que cada comando de ejecución del contenedor usaba la misma imagen `alpine`, cada ejecución era un contenedor separado y aislado. Cada contenedor tiene un sistema de archivos separado y se ejecuta en un espacio de nombres diferente; por defecto, un contenedor no tiene forma de interactuar con otros contenedores, incluso los de la misma imagen. 
 
