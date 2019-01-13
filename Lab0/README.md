@@ -19,7 +19,16 @@ Las distribuciones linux disponen de varios métodos de instalación, los más u
 ### Cloud
 Docker está disponible en los clouds de AWS y Azure.
 
+---
 # Docker CLI
+
+Concepts in this exercise:
+* Docker engine
+* Containers & images
+* Image registries and Docker Store (AKA Docker Hub)
+* Container isolation
+
+---
 Explorar comandos tanto de gestión como de servicio (imágenes y contenedores)
 1. Ejecuta `docker`
 2. Ejecutando nuestro primer contenedor `docker container run hello-world`
