@@ -22,16 +22,25 @@ Docker está disponible en los clouds de AWS y Azure.
 ---
 # Docker CLI
 
-Concepts in this exercise:
+Conceptos en este ejercicio:
 * Docker engine
-* Containers & images
+* Contenedoress & Imagenes
 * Image registries and Docker Store (AKA Docker Hub)
 * Container isolation
 
 ---
 Explorar comandos tanto de gestión como de servicio (imágenes y contenedores)
-1. Ejecuta `docker`
-2. Ejecutando nuestro primer contenedor `docker container run hello-world`
+
+### 1. Ejecuta docker
+```sh
+docker
+```
+### 2. Ejecutando nuestro primer contenedor
+It's time to get your hands dirty! As with all things technical, a "hello world" app is good place to start. Type or click the code below to run your first Docker container:
+```.term1
+docker container run hello-world
+```
+  `docker container run hello-world`
 3. Investiga sobre los comandos `docker pull` y `docker image pull` ¿Se Observan diferencias? Descarga la imagen `alpine`
 4. Ahora disponemos de imagenes en nuestro docker local. Lista las imágenes con `docker image ls` ¿Qué diferencias has observado entre la ejecución de los comandos anteriores?
 5. Vamos a correr un contenedor basado en la imagen alpine, ejecuta `docker container run alpine ls -l` 
