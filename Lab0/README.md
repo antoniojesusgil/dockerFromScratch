@@ -69,4 +69,25 @@ Ejecuta
 docker container run alpine echo "curso docker from scratch"
 ```
 
-Prueba a ejecutar otros comandos, por ejemplo `/bin/sh` y `cat /etc/alpine-release`
+y este otro
+```
+cat /etc/alpine-release
+```
+Acabamos de ver la manera de poder pasarle parámetros al contenedor para su ejecución
+
+### 5. Modo Interactivo
+
+Ejecuta 
+```
+docker container run alpine /bin/sh
+```
+¿Qué ha ocurrido? Al no haber suministrado ningún otro comando adicional, ha sido ejecutada una instancia del contenedor sobre la cual una shell ha ejecutado el comando `/bin/sh`, la misma ha sido terminada y ha parado y finalizado el contenedor, es decir, hemos provocado una ejecución completa del ciclo de vida.
+
+Docker nos facilita la posibildad de tener una shell interactiva sobre la cual se pueden escribir comandos, ejecuta
+```docker
+docker container run -it alpine /bin/sh
+```
+You are now inside the container running a Linux shell and you can try out a few commands like ls -l, uname -a and others. Note that Alpine is a small Linux OS so several commands might be missing. Exit out of the shell and container by typing the exit command.
+
+Ok, we said that we had run each of our commands above in a separate container instance. We can see these instances using the docker container ls command. The docker container ls command by itself shows you all containers that are currently running:
+
