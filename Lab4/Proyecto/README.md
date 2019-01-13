@@ -5,6 +5,8 @@ Construir un sistema escalable con arquitectura microservicios que nos permita r
 
 ### Arquitectura
 ![arquitectura](img/Arquitectura.png)
-### Front End
+
+### App voto
+![voto](img/)
 
 ### Back End
