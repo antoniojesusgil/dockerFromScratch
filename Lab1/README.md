@@ -38,16 +38,27 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 3030c9c91e12        alpine              "/bin/ash"               5 minutes ago       Exited (0) 2 minutes ago                        fervent_newton
 ```
 
-
-
-### Contenedores y cli
-1. Descarga la imagen oficial de `ubuntu` y ejecuta en un contenedor interactivo una shell `bash`
-2. Muestra los contenedores en ejecución usando el comando `docker container`y `docker ls`
-3. Muestra todos los contenedores tanto en ejecución como parados
-4. Para el contenedor `ubuntu`
-5. ¿Qué diferencia hay entre `docker stop` y `docker kill`?
-6. Arranca el contenedor `ubuntu`
-7. Elimina el contenedor `ubuntu`
+### Comando `start`
+Localiza el ID del contenedor sobre el cual creaste el fichero `hello.txt` y ejecuta:
+```
+docker container start <container ID>
+```
+Haz un listado de los contenedores en ejecución.
 
 ### Comando `exec`
-6. Inicia el contenedor del apartado **Isolation** usando `start` y lista el archivo `hello.txt` usando `exec`
+Para poder enviar comandos a contenedores en ejecución disponemos del comando `exec`, ejecuta:
+
+```
+docker container exec <container ID> ls
+```
+
+### Ejercicios
+1. Descarga la imagen oficial de `ubuntu` y ejecuta en un contenedor interactivo una shell `bash`
+2. Crea un fichero en el contenedor, puedes usar el comando `echo`o `touch`
+3. Muestra los contenedores en ejecución usando los comandos `docker container`y `docker ls`
+4. Muestra todos los contenedores tanto en ejecución como parados
+5. Para el contenedor `ubuntu`
+6. Arranca el contenedor `ubuntu` y accede al fichero creado
+7. Elimina el contenedor `ubuntu`
+
+
