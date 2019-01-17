@@ -13,4 +13,3 @@ Como especialistas de la compañia hemos de preparar un entorno docker para real
 5. Inicia todos los servicios, observa los logs y comprueba que no hay errores.
 6. Deten el sistema.
 7. Arranca en modo background.
-
