@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  votos:
+    : ./voto
+    command: python app.py
+    volumes:
+     - ./voto:/app
+    :
+      - "5000:80"
+
+  redis:
+    : redis:alpine
+    : ["6379"]
+
+  worker:
+    : ./worker
+
+  db:
+    image: postgres:9.4
+
+  resultados:
+    : ./resultado
+    : nodemon server.js
+    :
+      - ./resultado:/app
+    :
+      - "5001:80"
+      - "5858:5858"
