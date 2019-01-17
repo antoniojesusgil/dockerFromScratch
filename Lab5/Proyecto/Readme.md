@@ -1,12 +1,12 @@
 ## docker-compose
 
 ### Construir las imágenes
-```docker
+```bash
 docker-compose -f docker-compose.yml build
 ```
-###
-```docker
-docker images                                                             ✔  1891  16:43:12
+### Comprobar las imágenes
+```bash
+$ docker images                                                            
 REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
 ajgil/resultado              latest              0d30ccf70113        4 days ago          80.7MB
 ajgil/voto                   latest              ebd4e52b868b        4 days ago          70.9MB
@@ -17,10 +17,24 @@ python                       2.7-alpine          66c225e226f9        3 weeks ago
 ```
 
 ### Lanzar infraestructura contenedores
+
+Para probar el funcionamiento completo
 ```
 docker-compose up
 ```
-## Docker swarm
+
+## Docker Swarm
+
+```
+What is Docker Swarm? 
+Docker Swarm is a clustering and scheduling tool for Docker containers.
+```
+Caracteristicas mas importantes:
+
+Networking trasnparente mediante redes distribuidas entre los nodos del cluster y los contenedores que se ejecutan en esos nodos.
+Monitoriza el estado de los servicios volviendo a desplegar contenedores en caso caída. 
+
+### Iniciar nodo Sarm
 
 ```
 docker swarm init
@@ -32,50 +46,76 @@ To add a worker to this swarm, run the following command:
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
+### Desplegar infraestructura 
+
 ```sh
-docker stack deploy --compose-file docker-stack.yml votos
-Creating network votos_frontend
-Creating network votos_default
-Creating network votos_backend
-Creating service votos_result
-Creating service votos_worker
-Creating service votos_visualizer
-Creating service votos_redis
-Creating service votos_db
-Creating service votos_vote
+$ ddocker stack deploy --compose-file docker-stack.yml stack-votos           ✔  1911  17:01:59
+Creating network stack-votos_frontend
+Creating network stack-votos_backend
+Creating network stack-votos_default
+Creating service stack-votos_vote
+Creating service stack-votos_result
+Creating service stack-votos_worker
+Creating service stack-votos_visualizer
+Creating service stack-votos_redis
+Creating service stack-votos_db
 ```
 
-```
-docker stack ls
-NAME                SERVICES            ORCHESTRATOR
-votos               6                   Swarm
-```
+
 
 ### Iniciar los servicios
 
 ```
-docker stack services votos
-ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
-5tu0mh9iptef        votos_redis         replicated          1/1                 redis:alpine
-j8hblzhcbwqu        votos_result        replicated          0/1                 resultado:before    *:5001->80/tcp
-kf3lvne9e906        votos_vote          replicated          0/2                 voto:before         *:5000->80/tcp
-kxopxg2w2c6d        votos_visualizer    replicated          0/1                 visualizer:stable   *:8080->8080/tcp
-r3kfzbcjyz1j        votos_worker        replicated          0/1                 worker:latest
-svcsfvnphfba        votos_db            replicated          1/1                 postgres:9.4
+$ docker stack services stack-votos                                       1 ↵  1913  17:03:31
+ID                  NAME                     MODE                REPLICAS            IMAGE                    PORTS
+8ubza9g3xb2i        stack-votos_result       replicated          1/1                 ajgil/resultado:latest   *:5001->80/tcp
+alwjqwia582u        stack-votos_vote         replicated          2/2                 ajgil/voto:latest        *:5000->80/tcp
+k3vpchfhxqs1        stack-votos_redis        replicated          1/1                 redis:alpine
+nfoot7s097pj        stack-votos_visualizer   replicated          0/1                 visualizer:stable        *:8080->8080/tcp
+pc9pi5e2ty72        stack-votos_worker       replicated          1/1                 ajgil/worker:latest
+sebpneytejts        stack-votos_db           replicated          1/1                 postgres:9.4
+```
+Comprobamos servicios
+```
+$ docker stack ls                                                         
+NAME                SERVICES
+stack-votos          6
+```
+Comprobar la infraestructura
 
+### Escalar servicios
+
+Incrementamos a 5 nodos el servicio de votos
 ```
-### Escalar
-Incrementamos a 5 nodos
-```
-docker service scale voting_stack_vote=5
+$ docker service scale stack-votos_vote=5                                   ✔  1918  17:06:31
+stack-votos_vote scaled to 5
+overall progress: 5 out of 5 tasks
+1/5: running   [==================================================>]
+2/5: running   [==================================================>]
+3/5: running   [==================================================>]
+4/5: running   [==================================================>]
+5/5: running   [==================================================>]
+verify: Service converged
 ```
 Comprobamos los nodos
 ```
-docker service ps votos
+$ docker service ps stack-votos_vote                                      1 ↵  1923  17:08:12
+ID                  NAME                 IMAGE               NODE                    DESIRED STATE       CURRENT STATE                ERROR               PORTS
+tdwgfbnta1fb        stack-votos_vote.1   ajgil/voto:latest   linuxkit-025000000001   Running             Running 5 minutes ago
+t217s6tqgwnv        stack-votos_vote.2   ajgil/voto:latest   linuxkit-025000000001   Running             Running 5 minutes ago
+w83s93pudgjh        stack-votos_vote.3   ajgil/voto:latest   linuxkit-025000000001   Running             Running about a minute ago
+o7760xuh07e8        stack-votos_vote.4   ajgil/voto:latest   linuxkit-025000000001   Running             Running about a minute ago
+i6wrfpmsjdso        stack-votos_vote.5   ajgil/voto:latest   linuxkit-025000000001   Running             Running about a minute ago
 ```
 Decrementar a 3 nodos
 ```
-docker service scale voting_stack_vote=3
+$ docker service scale stack-votos_vote=3                                   ✔  1924  17:08:39
+stack-votos_vote scaled to 3
+overall progress: 3 out of 3 tasks
+1/3: running   [==================================================>]
+2/3: running   [==================================================>]
+3/3: running   [==================================================>]
+verify: Service converged
 ```
 
 
