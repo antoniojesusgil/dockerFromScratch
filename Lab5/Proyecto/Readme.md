@@ -4,6 +4,18 @@
 ```docker
 docker-compose -f docker-compose.yml build
 ```
+###
+```docker
+docker images                                                             ✔  1891  16:43:12
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+ajgil/resultado              latest              0d30ccf70113        4 days ago          80.7MB
+ajgil/voto                   latest              ebd4e52b868b        4 days ago          70.9MB
+ajgil/worker                 latest              214674010742        4 days ago          1.72GB
+postgres                     9.4                 f66cb3765ad7        6 days ago          225MB
+redis                        alpine              b42dc832c855        3 weeks ago         40.9MB
+python                       2.7-alpine          66c225e226f9        3 weeks ago         58.3MB
+```
+
 ### Lanzar infraestructura contenedores
 ```
 docker-compose up
