@@ -1,3 +1,10 @@
 ## docker-compose
-`docker-compose -f docker-compose.yml build`
-`docker-compose up`
+
+### Construir las imágenes
+```docker
+docker-compose -f docker-compose.yml build
+```
+### Lanzar infraestructura contenedores
+```
+docker-compose up
+```
