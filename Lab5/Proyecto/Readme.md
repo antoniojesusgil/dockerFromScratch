@@ -49,7 +49,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 ### Desplegar infraestructura 
 
 ```sh
-$ ddocker stack deploy --compose-file docker-stack.yml stack-votos           ✔  1911  17:01:59
+$ docker stack deploy --compose-file docker-stack.yml stack-votos         
 Creating network stack-votos_frontend
 Creating network stack-votos_backend
 Creating network stack-votos_default
@@ -66,7 +66,7 @@ Creating service stack-votos_db
 ### Iniciar los servicios
 
 ```
-$ docker stack services stack-votos                                       1 ↵  1913  17:03:31
+$ docker stack services stack-votos                                     
 ID                  NAME                     MODE                REPLICAS            IMAGE                    PORTS
 8ubza9g3xb2i        stack-votos_result       replicated          1/1                 ajgil/resultado:latest   *:5001->80/tcp
 alwjqwia582u        stack-votos_vote         replicated          2/2                 ajgil/voto:latest        *:5000->80/tcp
@@ -87,7 +87,7 @@ Comprobar la infraestructura
 
 Incrementamos a 5 nodos el servicio de votos
 ```
-$ docker service scale stack-votos_vote=5                                   ✔  1918  17:06:31
+$ docker service scale stack-votos_vote=5                                  
 stack-votos_vote scaled to 5
 overall progress: 5 out of 5 tasks
 1/5: running   [==================================================>]
@@ -99,7 +99,7 @@ verify: Service converged
 ```
 Comprobamos los nodos
 ```
-$ docker service ps stack-votos_vote                                      1 ↵  1923  17:08:12
+$ docker service ps stack-votos_vote                                     
 ID                  NAME                 IMAGE               NODE                    DESIRED STATE       CURRENT STATE                ERROR               PORTS
 tdwgfbnta1fb        stack-votos_vote.1   ajgil/voto:latest   linuxkit-025000000001   Running             Running 5 minutes ago
 t217s6tqgwnv        stack-votos_vote.2   ajgil/voto:latest   linuxkit-025000000001   Running             Running 5 minutes ago
@@ -109,7 +109,7 @@ i6wrfpmsjdso        stack-votos_vote.5   ajgil/voto:latest   linuxkit-0250000000
 ```
 Decrementar a 3 nodos
 ```
-$ docker service scale stack-votos_vote=3                                   ✔  1924  17:08:39
+$ docker service scale stack-votos_vote=3                                  
 stack-votos_vote scaled to 3
 overall progress: 3 out of 3 tasks
 1/3: running   [==================================================>]
